@@ -2,7 +2,7 @@ import scrapy
 from scrapy.crawler import CrawlerProcess
 import json
 
-class Quickr(scrapy.Spider):
+class Quikr(scrapy.Spider):
     name = 'quikr'
 
     url = 'https://www.quikr.com/cars/used+Maruti-Suzuki+Swift+cars+all-india+z1399vbd?page=21&aj=1&assuredfrom=0&premiumfrom=0&goldfrom=0&basicfrom=43&assuredcount=0&premiumcount=0&goldcount=0&basiccount=24'
@@ -16,7 +16,6 @@ class Quickr(scrapy.Spider):
             json.dump([], json_file)
 
     def start_requests(self):
-        for page in range(0, 5):
             yield scrapy.Request(url=self.url + '&page=' + str(page), headers=self.headers, callback=self.parse)
 
     def parse(self, res):
@@ -59,5 +58,5 @@ class Quickr(scrapy.Spider):
 
 # run scraper
 process = CrawlerProcess()
-process.crawl(Quickr)
+process.crawl(Quikr)
 process.start()
